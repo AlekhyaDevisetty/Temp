@@ -49,5 +49,10 @@ public class FileDAO implements DAO{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public int delete(String vehicleNumber) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

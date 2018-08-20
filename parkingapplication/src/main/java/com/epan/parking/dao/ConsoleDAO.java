@@ -1,6 +1,7 @@
 package com.epan.parking.dao;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import com.epam.parking.bean.VehicleBean;
@@ -31,6 +32,18 @@ public class ConsoleDAO implements DAO {
 				break;
 			}
 		}
+		return slotNumber;
+	}
+	public int delete(String vehicleNumber) {
+		int slotNumber = -1;
+		 for(Map.Entry entry:  VehicleBean.getVehicles().entrySet()){
+	            if(vehicleNumber.equals(entry.getValue())){
+	                slotNumber = Integer.parseInt(entry.getKey().toString());
+	                VehicleBean.getVehicles().put(slotNumber,"");
+	                break; 
+	            }
+	        }
+		 
 		return slotNumber;
 	}
 
