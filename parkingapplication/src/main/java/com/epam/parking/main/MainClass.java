@@ -15,7 +15,8 @@ public class MainClass {
 	public static void main(String[] args) {
 
 		DAO dao = new ConsoleDAO();
-		int slotSize = dao.initializeSlotSize(40);
+		int slotSize = 40;
+		dao.initializeSlotSize(slotSize);
 		Scanner sc = new Scanner(System.in);
 
 		while (true) {

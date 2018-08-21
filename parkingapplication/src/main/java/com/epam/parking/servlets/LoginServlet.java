@@ -13,37 +13,36 @@ import javax.servlet.http.HttpServletResponse;
 import com.epam.parking.service.Admin;
 import com.epan.parking.dao.ConsoleDAO;
 import com.epan.parking.dao.DAO;
+import com.epan.parking.dao.DatabaseDao;
+import com.epan.parking.dao.FileDAO;
 
 @WebServlet(urlPatterns = "/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-		      throws ServletException, IOException {
-		      
-		      // Set response content type
-		      response.setContentType("text/html");
-		      DAO dao = new ConsoleDAO();
-				int totalSlots = dao.initializeSlotSize(40);
-		      Admin check = new Admin();
-		      PrintWriter out = response.getWriter();
-		      String n=request.getParameter("name");  
-		      String p=request.getParameter("password"); 
-		      if(check.match(n,p)) {
-		    	  RequestDispatcher rd=request.getRequestDispatcher("Menu.html");  
-		          rd.forward(request,response);  
-		      }
-		      else {
-		    	  out.write("Login Failed");
-		      }
-		      
-		   }
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		   // Method to handle POST method request.
-		   public void doPost(HttpServletRequest request, HttpServletResponse response)
-		      throws ServletException, IOException {
+		// Set response content type
+		response.setContentType("text/html");
+		DAO dao = new FileDAO();
+		int totalSlots = 40;
+		//dao.initializeSlotSize(totalSlots);
+		Admin check = new Admin();
+		PrintWriter out = response.getWriter();
+		String n = request.getParameter("name");
+		String p = request.getParameter("password");
+		if (check.match(n, p)) {
+			RequestDispatcher rd = request.getRequestDispatcher("Menu.html");
+			rd.forward(request, response);
+		} else {
+			out.write("Login Failed");
+		}
 
-		      doGet(request, response);
-		   }
+	}
+
+	// Method to handle POST method request.
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		doGet(request, response);
+	}
 
 }
-

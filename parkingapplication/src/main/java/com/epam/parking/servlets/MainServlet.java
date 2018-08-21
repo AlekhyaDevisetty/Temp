@@ -16,6 +16,8 @@ import com.epam.parking.service.ParkingService;
 import com.epam.parking.service.UnparkingService;
 import com.epan.parking.dao.ConsoleDAO;
 import com.epan.parking.dao.DAO;
+import com.epan.parking.dao.DatabaseDao;
+import com.epan.parking.dao.FileDAO;
 
 @WebServlet(urlPatterns = "/MainServlet")
 public class MainServlet extends HttpServlet {
@@ -41,11 +43,12 @@ public class MainServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String requirement = request.getParameter("requirement");
 		String vehicleNumber = request.getParameter("vehicleNumber");
-		DAO dao = new ConsoleDAO();
+		DAO dao = new FileDAO();
 		
 			if (requirement.equals("parking")) {
 				ParkingService ps = new ParkingService();
 				int slotNumber = ps.parkVehicle(vehicleNumber, dao);
+				System.out.println(slotNumber);
 				RequestDispatcher rd = request.getRequestDispatcher("/Menu.html");
 				rd.include(request, response);
 				

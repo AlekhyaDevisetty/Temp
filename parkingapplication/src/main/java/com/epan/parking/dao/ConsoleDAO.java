@@ -8,12 +8,11 @@ import com.epam.parking.bean.VehicleBean;
 
 public class ConsoleDAO implements DAO {
 
-	public int initializeSlotSize(int numberOfSlots) {
+	public void initializeSlotSize(int numberOfSlots) {
 
 		for (int i = 1; i <= numberOfSlots; i++) {
 			VehicleBean.getVehicles().put(i, "");
 		}
-		return numberOfSlots;
 	}
 
 	public void write(String vehicleNumber, int slotNumber) {
